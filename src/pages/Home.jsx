@@ -9,7 +9,7 @@ import {
 import MyPokemon from "../pages/MyPokemon";
 import PokemonList from "../pages/PokemonList";
 import PokemonDetail from "../pages/PokemonDetail";
-
+import MyAppBar from "../pages/MyAppBar";
 
 export const RootContext = React.createContext();
 class Home extends React.Component {
@@ -17,6 +17,7 @@ class Home extends React.Component {
     return (
       <Router>
         <div>
+        <MyAppBar/>
           <nav>
             <ul>
               <li>
@@ -26,7 +27,7 @@ class Home extends React.Component {
                 <Link to="/mypokemon">My Pokemon</Link>
               </li>
               <li>
-                <Link to="/pokemondetails">Detail</Link>
+                <Link to="/pokemondetail">Detail</Link>
               </li>
             </ul>
           </nav>
