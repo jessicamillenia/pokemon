@@ -3,7 +3,6 @@ import {
   BrowserRouter as Router,
   Route,
   Routes,
-  Link,
 } from "react-router-dom";
 
 import MyPokemon from "../pages/MyPokemon";
@@ -18,7 +17,7 @@ class Home extends React.Component {
       <Router>
         <div>
         <MyAppBar/>
-          <nav>
+          {/* <nav>
             <ul>
               <li>
                 <Link to="/">Home</Link>
@@ -30,7 +29,7 @@ class Home extends React.Component {
                 <Link to="/pokemondetail">Detail</Link>
               </li>
             </ul>
-          </nav>
+          </nav> */}
           <Routes>
             <Route path="/" exact element={<PokemonList/>} />
             <Route path="/mypokemon" element={<MyPokemon/>} />
