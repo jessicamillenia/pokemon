@@ -23,14 +23,13 @@ export default function MyAppBar() {
 
   const [pageTitle, setPageTitle] = useState('Home');
 
-  const titleMap = [
-    {path: '/', title:'Home'},
-    {path: '/mypokemon', title:'My Pokemon'},
-    {path: '/pokemondetail', title:'Pokemon Detail'}
-  ]
-
   let curLoc = useLocation();
   useEffect(() => {
+    const titleMap = [
+      {path: '/', title:'Home'},
+      {path: '/mypokemon', title:'My Pokemon'},
+      {path: '/pokemondetail', title:'Pokemon Detail'}
+    ]
     const curTitle = titleMap.find(item => item.path === curLoc.pathname)
     if(curTitle && curTitle.title){
       setPageTitle(curTitle.title)
@@ -43,7 +42,7 @@ export default function MyAppBar() {
       <AppBar position="static" style={{backgroundColor: '#F6BB42'}}>
         <Toolbar>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Pokemon
+            {pageTitle}
           </Typography>
             <div>
               <IconButton
