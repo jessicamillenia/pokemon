@@ -32,8 +32,8 @@ class Home extends React.Component {
           </nav> */}
           <Routes>
             <Route path="/" exact element={<PokemonList/>} />
-            <Route path="/mypokemon" element={<MyPokemon/>} />
-            <Route path="/pokemondetail" element={<PokemonDetail/>} />
+            <Route path="/mypokemon" exact element={<MyPokemon/>} />
+            <Route path="/pokemon/:nama" exact element={<PokemonDetail/>} />
           </Routes>
         </div>
       </Router>

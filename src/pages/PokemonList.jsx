@@ -1,5 +1,6 @@
 import { Grid, Card, CardActionArea, CardMedia, CardContent, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 function PokemonList() {
   
@@ -48,7 +49,7 @@ function PokemonList() {
         {pokemons.map((pokemon) => (
           <Grid item key={pokemon.name} lg={3} md={4} sm={6} xs={6}>
             <Card>
-              <CardActionArea>
+              <CardActionArea component={Link} to={`/pokemon/${pokemon.name}`} >
                 <CardMedia
                   component="img"
                   image={pokemon.image}

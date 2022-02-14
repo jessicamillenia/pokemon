@@ -21,16 +21,17 @@ export default function MyAppBar() {
     setAnchorEl(null);
   };
 
-  const [pageTitle, setPageTitle] = useState('Home');
+  const [pageTitle, setPageTitle] = useState('Pokemon');
 
   let curLoc = useLocation();
   useEffect(() => {
     const titleMap = [
-      {path: '/', title:'Home'},
+      {path: '/pokemon/', title:'Pokemon Details'},
       {path: '/mypokemon', title:'My Pokemon'},
-      {path: '/pokemondetail', title:'Pokemon Detail'}
+      {path: '/', title:'Home'},
     ]
-    const curTitle = titleMap.find(item => item.path === curLoc.pathname)
+    const curTitle = titleMap.find(item => curLoc.pathname.includes(item.path))
+    
     if(curTitle && curTitle.title){
       setPageTitle(curTitle.title)
       document.title = curTitle.title
