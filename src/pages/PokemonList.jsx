@@ -36,7 +36,7 @@ function PokemonList() {
     fetchPokemons();
   }, []);
 
-  if (!pokemons.length) return <h3>Loading...</h3>;
+  if (!pokemons.length) return <h3 style={{textAlign: "center"}}>Loading...</h3>;
   return (
     <div>
       <Grid container

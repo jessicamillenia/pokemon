@@ -1,13 +1,27 @@
-import React from "react";
-import { Grid, Card, CardActionArea, CardMedia, CardContent, CardActions, Button, Typography } from "@mui/material";
+import React, { useState } from "react";
+import { Grid, Card, CardActionArea, CardMedia, CardContent, CardActions, Button, Typography, Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions } from "@mui/material";
 import { RootContext } from "./Home";
 
 function MyPokemon() {
+  const [open, setOpen] = useState(false);
+  const [index, setIndex] = useState(false);
+  const handleClose = () => {
+    setOpen(false);
+  };
+  function deletepokemon(getindex){
+    setIndex(getindex);
+    setOpen(true);
+  }
   return (
     <RootContext.Consumer>
       {
         value => {
-          if (!value.state.myPokemon.length) return <h3>You don't have any pokemon...</h3>;
+          if (!value.state.myPokemon.length) return <h3 style={{textAlign: "center"}}>You don't have any pokemon...</h3>;
+          function fixdelete(){
+            value.dispatch({type: "RELEASE", deleteID: index});
+            setIndex();
+            setOpen(false)
+          }
           return (
             <div>
               <Grid container
@@ -34,13 +48,32 @@ function MyPokemon() {
                             </CardContent>
                           </CardActionArea>
                           <CardActions>
-                            <Button size="small" color="primary" onClick={()=> value.dispatch({type: "RELEASE", deleteID: i})}>
+                            <Button size="small" color="primary" onClick={()=> deletepokemon(i)}>
                               Release
                             </Button>
                           </CardActions>
                         </Card>
                       </Grid>
                     ))}
+                  <Dialog
+                    open={open}
+                    onClose={handleClose}
+                    aria-labelledby="alert-dialog-title"
+                    aria-describedby="alert-dialog-description"
+                  >
+                    <DialogTitle id="alert-dialog-title">
+                      {"Warning!"}
+                    </DialogTitle>
+                    <DialogContent>
+                      <DialogContentText id="alert-dialog-description">
+                        Are you sure want to release this pokemon?
+                      </DialogContentText>
+                    </DialogContent>
+                    <DialogActions>
+                      <Button onClick={fixdelete}>Yes</Button>
+                      <Button onClick={handleClose}>No</Button>
+                    </DialogActions>
+                  </Dialog>
               </Grid>
             </div>
           )

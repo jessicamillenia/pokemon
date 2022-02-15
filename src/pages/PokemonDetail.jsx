@@ -7,6 +7,8 @@ function PokemonDetail() {
   const { nama } = useParams();
   const [details, setDetails] = useState();
   const [open, setOpen] = useState(false);
+  const [open2, setOpen2] = useState(false);
+  const [open3, setOpen3] = useState(false);
   const [nickname, setNickname] = useState('');
 
   const handleClickOpen = () => {
@@ -14,8 +16,16 @@ function PokemonDetail() {
     if (Math.round(random) === 1){
       setOpen(true);
     } else {
-      alert("Pokemon is running away..");
+      setOpen2(true);
     }
+  };
+
+  const handleClose2 = () => {
+    setOpen2(false);
+  };
+
+  const handleClose3 = () => {
+    setOpen3(false);
   };
 
   useEffect(() => {
@@ -59,7 +69,7 @@ function PokemonDetail() {
   }, [nama]);
   
   
-  if (!details) return <h3>Loading...</h3>;
+  if (!details) return <h3 style={{textAlign: "center"}}>Loading...</h3>;
   return (
     <RootContext.Consumer>
       {
@@ -68,9 +78,8 @@ function PokemonDetail() {
             value.dispatch({type: "CATCH", pokemon: {name: details.name, image:`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${details.id}.png`, nickname:nickname}});
             setNickname("");
             setOpen(false);
-            alert("Pokemon catched");
+            setOpen3(true);
           }
-          if (!value.state.myPokemon.length) return <h3>You don't have any pokemon...</h3>;
           return (
             <div>
               <h2 style={{textAlign: 'center'}}>{nama.toUpperCase()}</h2>
@@ -126,7 +135,6 @@ function PokemonDetail() {
                 </Grid>
               </Grid>
               <Box textAlign='center' >
-                {/* <Button color='warning' sx={{ width: '90%', marginBottom: 3}} variant='contained' onClick={() => catchpokemon({name: 'charmander', nickname: 'charmander 1', image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png'})}> */}
                 <Button color='warning' sx={{ width: '90%', marginBottom: 3}} variant='contained' onClick={handleClickOpen}>
                   Catch
                 </Button>
@@ -152,7 +160,43 @@ function PokemonDetail() {
                 <DialogActions>
                     <Button onClick={catchpokemon}>Catch</Button>
                 </DialogActions>
-            </Dialog>
+              </Dialog>
+              <Dialog
+                open={open2}
+                onClose={handleClose2}
+                aria-labelledby="alert-dialog-title"
+                aria-describedby="alert-dialog-description"
+              >
+                <DialogTitle id="alert-dialog-title">
+                  {"Failed to catch :("}
+                </DialogTitle>
+                <DialogContent>
+                  <DialogContentText id="alert-dialog-description">
+                    Pokemon is running away...
+                  </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                  <Button onClick={handleClose2}>OK</Button>
+                </DialogActions>
+              </Dialog>
+              <Dialog
+                open={open3}
+                onClose={handleClose3}
+                aria-labelledby="alert-dialog-title"
+                aria-describedby="alert-dialog-description"
+              >
+                <DialogTitle id="alert-dialog-title">
+                  {"Congratulations!"}
+                </DialogTitle>
+                <DialogContent>
+                  <DialogContentText id="alert-dialog-description">
+                    You've caught the pokemon!
+                  </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                  <Button onClick={handleClose3}>OK</Button>
+                </DialogActions>
+              </Dialog>
             </div>
           )
         }
