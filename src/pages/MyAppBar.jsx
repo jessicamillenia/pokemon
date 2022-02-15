@@ -28,7 +28,7 @@ export default function MyAppBar() {
     const titleMap = [
       {path: '/pokemon/', title:'Pokemon Details'},
       {path: '/mypokemon', title:'My Pokemon'},
-      {path: '/', title:'Home'},
+      {path: '/', title:'Pokemon List'},
     ]
     const curTitle = titleMap.find(item => curLoc.pathname.includes(item.path))
     
@@ -71,7 +71,7 @@ export default function MyAppBar() {
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
               >
-                <MenuItem component={Link} to="/">Home</MenuItem>
+                <MenuItem component={Link} to="/">Pokemon List</MenuItem>
                 <MenuItem component={Link} to="/mypokemon">My Pokemon</MenuItem>
               </Menu>
             </div>

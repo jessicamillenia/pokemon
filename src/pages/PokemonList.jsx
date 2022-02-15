@@ -39,7 +39,6 @@ function PokemonList() {
   if (!pokemons.length) return <h3>Loading...</h3>;
   return (
     <div>
-      <h2 style={{textAlign: 'center'}}>Pokemon List</h2>
       <Grid container
             direction="row"
             justifyContent="center"
@@ -54,9 +53,9 @@ function PokemonList() {
                   component="img"
                   image={pokemon.image}
                 />
-                <CardContent>
+                <CardContent sx={{textAlign: 'center'}}>
                   <Typography gutterBottom variant="h6" component="div">
-                    {pokemon.name}
+                    {pokemon.name.toUpperCase()}
                   </Typography>
                   <Typography variant="body2" color="text.secondary">
                     Owned Total : 10
