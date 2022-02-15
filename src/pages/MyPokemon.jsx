@@ -48,7 +48,7 @@ function MyPokemon() {
                             </CardContent>
                           </CardActionArea>
                           <CardActions>
-                            <Button size="small" color="primary" onClick={()=> deletepokemon(i)}>
+                            <Button size="small" color="warning" onClick={()=> deletepokemon(i)}>
                               Release
                             </Button>
                           </CardActions>
@@ -70,8 +70,8 @@ function MyPokemon() {
                       </DialogContentText>
                     </DialogContent>
                     <DialogActions>
-                      <Button onClick={fixdelete}>Yes</Button>
-                      <Button onClick={handleClose}>No</Button>
+                      <Button color="warning" onClick={fixdelete}>Yes</Button>
+                      <Button color="warning" onClick={handleClose}>No</Button>
                     </DialogActions>
                   </Dialog>
               </Grid>

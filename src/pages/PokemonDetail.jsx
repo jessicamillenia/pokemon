@@ -168,12 +168,13 @@ function PokemonDetail() {
                     label="Nickname"
                     fullWidth
                     variant="standard"
+                    color="warning"
                     value={nickname}
                     onChange={(event) => {setNickname(event.target.value)}} 
                     />
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={catchpokemon}>Catch</Button>
+                    <Button color="warning" onClick={catchpokemon}>Catch</Button>
                 </DialogActions>
               </Dialog>
               <Dialog
@@ -191,7 +192,7 @@ function PokemonDetail() {
                   </DialogContentText>
                 </DialogContent>
                 <DialogActions>
-                  <Button onClick={handleClose2}>OK</Button>
+                  <Button color="warning" onClick={handleClose2}>OK</Button>
                 </DialogActions>
               </Dialog>
               <Dialog
@@ -209,7 +210,7 @@ function PokemonDetail() {
                   </DialogContentText>
                 </DialogContent>
                 <DialogActions>
-                  <Button onClick={handleClose3}>OK</Button>
+                  <Button color="warning" onClick={handleClose3}>OK</Button>
                 </DialogActions>
               </Dialog>              
               <Dialog
@@ -227,7 +228,7 @@ function PokemonDetail() {
                   </DialogContentText>
                 </DialogContent>
                 <DialogActions>
-                  <Button onClick={handleClose4}>OK</Button>
+                  <Button color="warning" onClick={handleClose4}>OK</Button>
                 </DialogActions>
               </Dialog>
             </div>

@@ -1,3 +1,10 @@
+# Link Deployment
+[netlify](https://catchpokemonapp.netlify.app/)
+
+# Weakness
+- My pokemon list not persist after a full page reload.
+- There's no automated test
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
