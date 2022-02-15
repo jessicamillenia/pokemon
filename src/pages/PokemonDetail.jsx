@@ -9,6 +9,7 @@ function PokemonDetail() {
   const [open, setOpen] = useState(false);
   const [open2, setOpen2] = useState(false);
   const [open3, setOpen3] = useState(false);
+  const [open4, setOpen4] = useState(false);
   const [nickname, setNickname] = useState('');
 
   const handleClickOpen = () => {
@@ -26,6 +27,10 @@ function PokemonDetail() {
 
   const handleClose3 = () => {
     setOpen3(false);
+  };
+
+  const handleClose4 = () => {
+    setOpen4(false);
   };
 
   useEffect(() => {
@@ -74,11 +79,21 @@ function PokemonDetail() {
     <RootContext.Consumer>
       {
         value => {
-          function catchpokemon(pokemon) {
-            value.dispatch({type: "CATCH", pokemon: {name: details.name, image:`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${details.id}.png`, nickname:nickname}});
-            setNickname("");
-            setOpen(false);
-            setOpen3(true);
+          function catchpokemon() {
+            let isSame = false
+            value.state.myPokemon.forEach((mypoke) => {
+              if (mypoke.nickname === nickname){
+                isSame = true;
+              } 
+            })
+            if (isSame === false){
+              value.dispatch({type: "CATCH", pokemon: {name: details.name, image:`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${details.id}.png`, nickname:nickname}});
+              setNickname("");
+              setOpen(false);
+              setOpen3(true);
+            } else {
+              setOpen4(true);
+            }
           }
           return (
             <div>
@@ -195,6 +210,24 @@ function PokemonDetail() {
                 </DialogContent>
                 <DialogActions>
                   <Button onClick={handleClose3}>OK</Button>
+                </DialogActions>
+              </Dialog>              
+              <Dialog
+                open={open4}
+                onClose={handleClose4}
+                aria-labelledby="alert-dialog-title"
+                aria-describedby="alert-dialog-description"
+              >
+                <DialogTitle id="alert-dialog-title">
+                  {"Oops!"}
+                </DialogTitle>
+                <DialogContent>
+                  <DialogContentText id="alert-dialog-description">
+                    You have other pokemon with this nickname!
+                  </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                  <Button onClick={handleClose4}>OK</Button>
                 </DialogActions>
               </Dialog>
             </div>
