@@ -46,7 +46,7 @@ function PokemonList() {
             spacing={2}
             padding={1}>
         {pokemons.map((pokemon) => (
-          <Grid item key={pokemon.name} lg={3} md={4} sm={6} xs={6}>
+          <Grid item key={pokemon.name} lg={2} md={3} sm={4} xs={6}>
             <Card>
               <CardActionArea component={Link} to={`/pokemon/${pokemon.name}`} >
                 <CardMedia

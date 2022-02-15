@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Grid, Button, Box } from "@mui/material";
 import { useParams } from "react-router";
+import { RootContext } from "./Home";
 
 function PokemonDetail() {
   const { nama } = useParams();
@@ -46,10 +47,24 @@ function PokemonDetail() {
     fetchdetails();
   }, [nama]);
   
+  
   if (!details) return <h3>Loading...</h3>;
-  console.log(details)
-
   return (
+<RootContext.Consumer>
+      {
+        value => {
+          function catchpokemon(pokemon) {
+            const random = Math.random() * 1;
+            alert(Math.round(random) );
+            if (Math.round(random) == 1){
+              value.dispatch({type: "CATCH", pokemon: pokemon})
+              alert("Pokemon catched");
+            } else {
+              alert("Pokemon is running away..");
+            }
+          }
+          if (!value.state.myPokemon.length) return <h3>You don't have any pokemon...</h3>;
+          return (
     <div>
       <h2 style={{textAlign: 'center'}}>{nama.toUpperCase()}</h2>
       <Grid container
@@ -77,12 +92,15 @@ function PokemonDetail() {
         </Grid>
       </Grid>
       <Box textAlign='center' >
-        <Button sx={{ width: '90%', marginBottom: 3}}variant='contained'>
+        <Button sx={{ width: '90%', marginBottom: 3}} variant='contained' onClick={() => catchpokemon({name: 'charmander', nickname: 'charmander 1', image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png'})}>
           Catch
         </Button>
       </Box>
     </div>
-  );
+          )
+        }
+      }
+</RootContext.Consumer>)
 }
 
 export default PokemonDetail;
